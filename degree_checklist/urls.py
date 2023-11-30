@@ -32,3 +32,7 @@ urlpatterns = [
     # Import view URL
     path('data-import/', import_views.data_import_view, name='data_import_view'),
 ]
+
+# to serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

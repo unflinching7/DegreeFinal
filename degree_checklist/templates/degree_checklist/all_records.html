@@ -1,4 +1,6 @@
 <!-- all_records.html -->
+{% load custom_filters custom_tags %} <!-- Load the custom template filters and tags -->
+
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +14,7 @@
     <h2>Students</h2>
     <ul>
         {% for student in students %}
-        <li>{{ student.Name }} - {{ student.ContactInfo }} ({{ student.EnrollmentYear }})</li>
+        <li>{{ student.Name|uppercase }} - {{ student.ContactInfo }} ({{ student.EnrollmentYear }})</li>
         {% empty %}
         <li>No students found.</li>
         {% endfor %}
@@ -63,6 +65,9 @@
         <li>No course enrollments found.</li>
         {% endfor %}
     </ul>
+
+    <!-- Use the custom template tag -->
+    <p>Current time: {% current_time "%Y-%m-%d %H:%M:%S" %}</p>
 
 </body>
 
