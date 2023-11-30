@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import Student, DegreeProgram, Course, DegreeChecklistTemplate, StudentDegreeChecklist, CourseEnrollment
 
-
+# check the __str__ representation of each model
 class StudentModelTest(TestCase):
     def test_str_representation(self):
         student = Student(Name="John Doe", ContactInfo="john@example.com", EnrollmentYear=2022)
