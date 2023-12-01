@@ -1,11 +1,7 @@
 from django.contrib import admin
+from django.contrib import messages
+from django.shortcuts import redirect
 from .models import Student, DegreeProgram, Course, DegreeChecklistTemplate, StudentDegreeChecklist, CourseEnrollment
-
-# Register models
-admin.site.register(Course)
-admin.site.register(DegreeChecklistTemplate)
-admin.site.register(StudentDegreeChecklist)
-admin.site.register(CourseEnrollment)
 
 # Add import_data function outside the admin classes
 def import_data(modeladmin, request, queryset):

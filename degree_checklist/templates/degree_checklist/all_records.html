@@ -1,15 +1,23 @@
-<!-- all_records.html -->
-{% load custom_filters custom_tags %} <!-- Load the custom template filters and tags -->
+{% load custom_filters custom_tags crispy_forms_tags %} <!-- Load the necessary tags -->
 
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>All Records</title>
+    <!-- Include crispy-forms CSS (you may need to adjust the path based on your project structure) -->
+    <link rel="stylesheet" href="{% static 'crispy_forms/css/crispy.css' %}">
 </head>
 
 <body>
     <h1>All Records</h1>
+
+    <h2>Data Import</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ import_form|crispy }}
+        <button type="submit">Import Data</button>
+    </form>
 
     <h2>Students</h2>
     <ul>
@@ -20,55 +28,13 @@
         {% endfor %}
     </ul>
 
-    <h2>Degree Programs</h2>
-    <ul>
-        {% for program in degree_programs %}
-        <li>{{ program.ProgramName }} - {{ program.ProgramCode }} (Total Credits: {{ program.TotalCredits }})</li>
-        {% empty %}
-        <li>No degree programs found.</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Courses</h2>
-    <ul>
-        {% for course in courses %}
-        <li>{{ course.CourseName }} - {{ course.CourseCode }} (Credit Hours: {{ course.CreditHours }})</li>
-        {% empty %}
-        <li>No courses found.</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Degree Checklist Templates</h2>
-    <ul>
-        {% for template in degree_checklist_templates %}
-        <li>{{ template.TemplateName }} - {{ template.AcademicYear }}</li>
-        {% empty %}
-        <li>No degree checklist templates found.</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Student Degree Checklists</h2>
-    <ul>
-        {% for checklist in student_degree_checklists %}
-        <li>{{ checklist.ChecklistName }} - {{ checklist.Status }}</li>
-        {% empty %}
-        <li>No student degree checklists found.</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Course Enrollments</h2>
-    <ul>
-        {% for enrollment in course_enrollments %}
-        <li>{{ enrollment.Student.Name }} - {{ enrollment.Course.CourseName }} (Status: {{ enrollment.EnrollmentStatus
-            }})</li>
-        {% empty %}
-        <li>No course enrollments found.</li>
-        {% endfor %}
-    </ul>
+    <!-- Other sections for Degree Programs, Courses, etc. -->
 
     <!-- Use the custom template tag -->
     <p>Current time: {% current_time "%Y-%m-%d %H:%M:%S" %}</p>
 
+    <!-- Include crispy-forms JavaScript (you may need to adjust the path based on your project structure) -->
+    <script src="{% static 'crispy_forms/js/crispy.js' %}"></script>
 </body>
 
 </html>
