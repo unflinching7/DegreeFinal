@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.shortcuts import redirect
 from .models import Student, DegreeProgram, Course, DegreeChecklistTemplate, StudentDegreeChecklist, CourseEnrollment
@@ -37,4 +39,7 @@ class StudentDegreeChecklistAdmin(admin.ModelAdmin):
 class CourseEnrollmentAdmin(admin.ModelAdmin):
     actions = [import_data]
 
+# Register the User model with the custom UserAdmin
+admin.site.unregister(User)  # Unregister the default User admin
+admin.site.register(User, UserAdmin)  # Register User with custom admin
 
