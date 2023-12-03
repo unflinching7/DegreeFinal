@@ -1,5 +1,8 @@
 from django.urls import path
+from django.conf import settings  # Add this line
+from django.conf.urls.static import static  # Add this line
 from . import views, form_views, record_views, import_views
+from . import_views import DataImportView
 
 urlpatterns = [
     # Existing views and forms URLs
@@ -30,7 +33,7 @@ urlpatterns = [
          name='course_enrollment_records'),
 
     # Import view URL
-    path('data-import/', import_views.data_import_view, name='data_import_view'),
+    path('data_import/', import_views.DataImportView.as_view(), name='data_import_view'),
 ]
 
 # to serve media files during development
