@@ -1,8 +1,9 @@
 from django.urls import path
-from django.conf import settings  # Add this line
-from django.conf.urls.static import static  # Add this line
+from django.conf import settings  
+from django.conf.urls.static import static  
 from . import views, form_views, record_views, import_views
 from . import_views import DataImportView
+from .views import generate_csv
 
 urlpatterns = [
     # Existing views and forms URLs
@@ -34,6 +35,13 @@ urlpatterns = [
 
     # Import view URL
     path('data_import/', import_views.DataImportView.as_view(), name='data_import_view'),
+
+     # New URL pattern for the generate_csv view
+    path('generate_csv/', generate_csv, name='generate_csv'),
+
+     # New URL pattern for the generate_pdf view
+    path('generate_pdf/', views.generate_pdf, name='generate_pdf'),
+  
 ]
 
 # to serve media files during development
