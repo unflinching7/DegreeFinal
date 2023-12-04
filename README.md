@@ -62,3 +62,17 @@ These ERDs provide an understanding of the data structure and relationships with
 </body>
 
 </html>
+
+## Deployment Steps (completed steps 1 thru 8, at which point Heroku required a payment card on file for further action). Here are the steps:
+1. Installed Heroku CLI
+2. Created a Heroku account
+3. Login to Heroku
+4. Installed required packages 
+5. Created a Procfile
+6. Configured Static Files
+7. Commited Changes to Github
+8. Created a Heroku App (completed steps 1 thru 8)
+9. Set Environment Variables
+10. Push to Heroku
+11. Migrate Database
+12. Open the App
