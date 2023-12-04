@@ -6,6 +6,10 @@ import csv
 from django.http import HttpResponse
 from io import BytesIO
 import base64
+from rest_framework import viewsets
+from .models import Student
+from .serializers import StudentSerializer
+
 
 
 def all_records(request):
@@ -79,6 +83,9 @@ def generate_graph(request):
 
     return response
 
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
 
 
 

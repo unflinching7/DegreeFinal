@@ -1,9 +1,15 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings  
 from django.conf.urls.static import static  
 from . import views, form_views, record_views, import_views
 from . import_views import DataImportView
 from .views import generate_csv
+from rest_framework.routers import DefaultRouter
+from .views import StudentViewSet
+
+router = DefaultRouter()
+router.register(r'students', StudentViewSet, basename='students')
+
 
 urlpatterns = [
     # Existing views and forms URLs
@@ -44,6 +50,7 @@ urlpatterns = [
 
         # New URL pattern for the generate_graph view
     path('generate_graph/', views.generate_graph, name='generate_graph'),
+    path('api/', include(router.urls)),
 
   
 ]
