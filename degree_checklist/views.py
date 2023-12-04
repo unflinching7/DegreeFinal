@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import Student, DegreeProgram, Course, DegreeChecklistTemplate, StudentDegreeChecklist, CourseEnrollment
 from reportlab.pdfgen import canvas
+import matplotlib.pyplot as plt
 import csv
 from django.http import HttpResponse
+from io import BytesIO
+import base64
 
 
 def all_records(request):
@@ -51,5 +54,31 @@ def generate_pdf(request):
     p.save()
 
     return response
+
+def generate_graph(request):
+    # Use the 'Agg' backend to avoid issues with the development server
+    plt.switch_backend('Agg')
+
+    # Create a simple bar chart as an example
+    data = {'A': 10, 'B': 5, 'C': 8}
+
+    plt.bar(data.keys(), data.values())
+    plt.xlabel('Grades')
+    plt.ylabel('Quantity')
+    plt.title('Grade Quantities')
+
+    # Save the plot to a BytesIO object
+    image_stream = BytesIO()
+    plt.savefig(image_stream, format='png')
+    image_stream.seek(0)
+
+    # Embed the plot in the response
+    response = HttpResponse(content_type='image/png')
+    response['Content-Disposition'] = 'attachment; filename="graph.png"'
+    response.write(image_stream.read())
+
+    return response
+
+
 
 

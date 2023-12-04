@@ -41,6 +41,10 @@ urlpatterns = [
 
      # New URL pattern for the generate_pdf view
     path('generate_pdf/', views.generate_pdf, name='generate_pdf'),
+
+        # New URL pattern for the generate_graph view
+    path('generate_graph/', views.generate_graph, name='generate_graph'),
+
   
 ]
 
